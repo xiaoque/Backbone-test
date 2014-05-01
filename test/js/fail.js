@@ -119,13 +119,14 @@ $(function() {
 
         events: {
             "keypress #tweet_text": "createTweet",
-            'update-sort': 'updateSort'
+            'update-sort': 'updateSort',
+            "keypress #search_title": "search"
         },
 
         initialize: function(){
 
             _.bindAll(this, 'add', 'addAll');
-            this.input = this.$("#tweet_text");
+            this.input = $("#tweet_text");
 
             this.collection.bind('add', this.add);
             this.collection.bind('reset', this.addAll);
@@ -147,6 +148,11 @@ $(function() {
             });*/
         },
 
+        render: function(){
+            $("#sortable").children().remove();
+            this.addAll();
+        },
+        
         add: function(tweet){
             var view = new TweetView({model: tweet});
             $("#sortable").append(view.render().el);
@@ -164,10 +170,6 @@ $(function() {
             this.input.val('');
         },
 
-        render: function(){
-            $("#sortable").children().remove();
-            this.addAll();
-        },
 
         updateSort: function(event, model, position){
             /*
@@ -192,11 +194,21 @@ $(function() {
             this.collection.add(model,{at: position});
             this.collection.models[position].save({"order": position});
             this.render();
+        },
+        search: function(){
+
         }
 
     });
 
-    var app = new AppView({collection: collection});
+    var Router = Backbone.Router.extend({
+
+    });
+
+    var appRouter = new Router();
+    var app = new AppView({collection: collection, router: appRouter});
+
+    Backbone.history.start();
 
     $(document).ready(function() {
         $('#sortable').sortable({

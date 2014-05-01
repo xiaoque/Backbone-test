@@ -1,46 +1,58 @@
-
 body {
     font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.4em;
-    background: #eeeeee;
+    background: white;
     color: #333333;
     margin: 0 auto;
     -webkit-font-smoothing: antialiased;
 }
 
-#center{
-    MARGIN-RIGHT: auto;
-    MARGIN-LEFT: auto;
-    height:50px;
-    width:600px;
-    vertical-align: middle;
+header { height: 37px; }
+
+nav {
+    height: 37px;
+    width: 100%;
+    background-color: #2D2D2D;
+    position: fixed;
+    top: 0;
 }
 
-#center input[type="text"] {
-    font-size: 20px;
-    font-family: inherit;
-    line-height: 1.4em;
-    outline: none;
-    margin: 0px 30px;
-    border: 1px solid #999999;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-    -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-    -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+#tweet_text{
+    margin: 9px auto auto 170px;
+    width: 315px;
+    border: 0 none;
+    color: #2D2D2D;
+    padding: 2px;
 }
 
-#list {
-    margin: 10px 0;
-    padding: 0;
-    list-style: none;
+#search_title{
+    margin-top: 9px;
+    width: 200px;
+    border: 0 none;
+    color: #2D2D2D;
+    padding: 1px;
 }
 
-#list li {
-    padding: 18px 20px 18px 0;
-    position: relative;
-    font-size: 24px;
-    border-bottom: 1px solid #cccccc;
+#side-bar {
+    width: 310px;
+    height: 100%;
+    margin-top: 3px;
+    margin-left: 5px;
+    background-color: #EDEDED;
+    border-right: solid 1px #DDDDDD;
+    position: fixed;
+    left: 0;
+}
+
+
+#tweets{
+    height: 100%;
+    background-color: #EDEDED;
+    border-right: solid 1px #DDDDDD;
+}
+
+#search_result{
+    width: 19%
 }
 
 li.editing {
@@ -70,8 +82,10 @@ li .edit {
 }
 
 #sortable {
+    margin-left: 370px;
+    margin-top: 37px;
     list-style-type: none;
-    margin: 0;
+    position: relative;
     padding: 0;
 }
 
@@ -89,11 +103,3 @@ li .edit {
     border-right: 1px solid #cccccc;
 }
 
-
-
-textarea{
-    overflow: auto;
-    padding: 6px;
-    margin: 0px 30px;
-
-}
