@@ -5,23 +5,24 @@
     <title>Twitter Handlebars</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
-    <link rel="stylesheet" href="css/note.css">
+    <link rel="stylesheet" href="css/tweet.css">
 </head>
 
 <body>
 <script type="text/javascript" src="js/libs/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/libs/jquery-ui.js"></script>
-
 <script src="js/libs/underscore-min.js"></script>
 <script src="js/libs/backbone.js"></script>
 <script src="js/libs/backbone.localStorage.js"></script>
 
 <script src="js/fail.js"></script>
 
-
+<div id = "center">
+    <textarea id="tweet_text" type="text" ></textarea>
+    <input id="search_title" type="text" placeholder="search">
+</div>
 
 <div id="tweets">
-    <textarea id="tweet_text" type="text" ></textarea>
 
     <ul id="sortable">
     </ul>
@@ -29,7 +30,7 @@
 
 <script type="text/template" id="tweetsTemplate">
     <div class="tweet">
-        <p><%- title %></p>
+        <p> <b><%- title %> </b></p>
         <label><%- text %></label>
     </div>
     <textarea class="edit" type="text"><%- text %></textarea>

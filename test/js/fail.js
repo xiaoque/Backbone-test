@@ -13,8 +13,6 @@ $(function() {
 
         initialize: function () {
             if (this.get("text")) {
-                console.log("create "+ this.get("text"));
-               // count = count+1;
                 this.set({"title": this.get("text").slice(0, 15)});
             }
             else {
@@ -42,11 +40,6 @@ $(function() {
         }
         */
 
-
-        fetchSuccess: function(collection, response){
-            console.log(collection.length);
-        },
-
         nextOrder: function(){
             if (!this.length) return 1;
             return this.last().get('order') + 1;
@@ -58,6 +51,13 @@ $(function() {
 
         find: function(text){
             return this.where({text: text});
+        },
+
+        reOrder: function(){
+            var length = this.length;
+            for(var i = 0; i<length ; i++){
+                this.models[i].save({"order": i});
+            }
         }
     });
 
@@ -97,11 +97,9 @@ $(function() {
 
         close: function() {
             var value = this.input.val().trim();
-
             if ( value ) {
                 this.model.save({ text: value });
             }
-
             this.$el.removeClass('editing');
         },
 
@@ -131,15 +129,14 @@ $(function() {
 
             this.collection.bind('add', this.add);
             this.collection.bind('reset', this.addAll);
-            var colle = this.collection;
+            var collec = this.collection;
             this.collection.fetch({
                 success: function(){
-                    var count = colle.length;
-                    for(var i = 0; i < count; i++){
-                        colle.models[i].set({"order": i});
-                    }
+                    collec.reOrder();
                 }
-            });            /*{
+            });
+                /*
+            this.collection.fetch({
                 success: function(collection,response){
                     tweets.localStorage = new Backbone.LocalStorage("tweetList");
                     tweets.reset();
@@ -147,7 +144,7 @@ $(function() {
                         tweets.create({text: obj.text});
                     });
                 }
-            }*/
+            });*/
         },
 
         add: function(tweet){
@@ -173,6 +170,7 @@ $(function() {
         },
 
         updateSort: function(event, model, position){
+            /*
             var str = model.get("text");
             _.invoke(this.collection.find(str),'destroy');
             this.collection.create({text: str});
@@ -182,11 +180,18 @@ $(function() {
                 _.invoke(this.collection.find(str),'destroy');
                 this.collection.create({text:str});
             };
-            var length = this.collection.length;
-            for(var i = 0 ; i<length;i++){
-            //    this.collection.models[i].set();
-                this.collection.models[i].save({"order": i});
+
+            this.collection.reOrder();
+            */
+
+            this.collection.remove(model);
+            var previousIndex = model.get("order");
+            for(previousIndex ; previousIndex <= position ; previousIndex++){
+                this.collection.models[previousIndex].save({"order": previousIndex});
             }
+            this.collection.add(model,{at: position});
+            this.collection.models[position].save({"order": position});
+            this.render();
         }
 
     });
