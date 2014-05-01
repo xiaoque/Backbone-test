@@ -7,41 +7,23 @@
 
 <body>
 
-<div id="twitterfeed"><!-- --></div>
 
+<script src="js/libs/jquery-1.8.3.min.js"></script>
+<script src="js/libs/underscore-min.js"></script>
+<script src="js/libs/backbone.js"></script>
+<script src="js/libs/backbone.localStorage.js"></script>
 
-<div id="twitterhash"><!-- --></div>
+<script src="app.js"></script>
 
+<div id="tweets">
 
+    <script type="text/template" id="tweetsTemplate">
+        <div class="tweet">
+            <p><%= title %></p>
+            <p><%= text %></p>
+        </div>
+    </script>
+</div>
 
-<!-- libs -->
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
-
-<!-- Backbone API: Twitter -->
-<script type="text/javascript" src="libs/backbone.api.twitter.js"></script>
-
-<!-- template -->
-<script id="twitter-hash" type="text/x-handlebars-template">
-    {{#items}}
-    <p><img src="{{profile_image_url}}" alt="{{from_user_name}}"><strong>{{from_user_name}}</strong>{{text}}<span class='date'> {{created_at}}</span></p>
-    {{/items}}
-</script>
-
-<!-- init -->
-<script type="text/javascript">
-    $(document).ready( function() {
-
-        var template = $(this.el).find("#twitter-hash").html()
-        var data = new Twitter.Collections.User({user:"tracend", num: 15});
-        var view = new Twitter.Views.Stream({el: "#twitterfeed", model: data, template: template });
-
-        var data1 = new Twitter.Collections.Hash({query:"%23AlphasOnSyfy", num: 15});
-        var view1 = new Twitter.Views.Stream({el: "#twitterhash", model: data1, template: template });
-
-    });
-</script>
 </body>
 </html>
