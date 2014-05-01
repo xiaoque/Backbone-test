@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Twitter Handlebars</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    <link rel="stylesheet" href="css/note.css">
 </head>
 
 <body>
@@ -13,17 +16,24 @@
 <script src="js/libs/backbone.js"></script>
 <script src="js/libs/backbone.localStorage.js"></script>
 
-<script src="app.js"></script>
+<script src="js/fail.js"></script>
+
 
 <div id="tweets">
+    <input id="tweet_text" type="text" >
 
-    <script type="text/template" id="tweetsTemplate">
-        <div class="tweet">
-            <p><%= title %></p>
-            <p><%= text %></p>
-        </div>
-    </script>
+    <ul id="sortable">
+    </ul>
 </div>
+
+<script type="text/template" id="tweetsTemplate">
+    <div class="tweet">
+        <p><%- title %></p>
+        <label><%- text %></label>
+    </div>
+    <input class="edit" type="text" value="<%- text %>">
+
+</script>
 
 </body>
 </html>
