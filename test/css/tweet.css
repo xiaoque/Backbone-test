@@ -51,10 +51,6 @@ nav {
     border-right: solid 1px #DDDDDD;
 }
 
-#search_result{
-    width: 19%
-}
-
 li.editing {
     border-bottom: none;
     margin-top: -1px;
@@ -103,3 +99,7 @@ li .edit {
     border-right: 1px solid #cccccc;
 }
 
+#side-bar li{
+    margin: 3px 2px;
+    border-bottom: 1px solid #cccccc;
+}
