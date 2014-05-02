@@ -17,20 +17,12 @@ nav {
     top: 0;
 }
 
-#tweet_text{
-    margin: 9px auto auto 170px;
+#search_title{
+    margin: 9px auto auto 30px;
     width: 315px;
     border: 0 none;
     color: #2D2D2D;
     padding: 2px;
-}
-
-#search_title{
-    margin-top: 9px;
-    width: 200px;
-    border: 0 none;
-    color: #2D2D2D;
-    padding: 1px;
 }
 
 #side-bar {

@@ -26,8 +26,7 @@ $(function() {
         model: Tweet,
     //    localStorage: new Backbone.LocalStorage("tweetList"),
 
-        url: 'http://localhost:8888/video/test/tweetOAuth/tweets_json.php?count=10&screen_name=fhollande&include_entities=false&include_rts=false',
-
+        url: 'http://localhost:8888/video/test/tweetOAuth/tweets_json.php?count=10&screen_name=fhollande',
 
         parse: function(response){
             return _.map(response, function(obj) {
@@ -36,9 +35,7 @@ $(function() {
                 obj.text = str;
                 return obj;
             });
-            return response;
         },
-
 
         nextOrder: function(){
             if (!this.length) return 1;
@@ -133,7 +130,6 @@ $(function() {
         el: $("#tweets"),
 
         events: {
-            "keypress #tweet_text": "createTweet",
             'update-sort': 'updateSort',
             "keypress #search_title": "search"
         },
@@ -141,7 +137,6 @@ $(function() {
         initialize: function(){
 
             _.bindAll(this, 'add', 'addAll');
-            this.tweetInput = $("#tweet_text");
             this.searchInput = $("#search_title");
 
             this.collection.bind('add', this.add);
@@ -179,29 +174,7 @@ $(function() {
             $("#side-bar").children().remove();
         },
 
-        createTweet:function(e){
-            if (e.keyCode != 13) return;
-            if (!this.tweetInput.val()) return;
-
-            this.collection.create({text: this.tweetInput.val()});
-            this.tweetInput.val('');
-        },
-
-
         updateSort: function(event, model, position){
-            /*
-            var str = model.get("text");
-            _.invoke(this.collection.find(str),'destroy');
-            this.collection.create({text: str});
-            var count = this.collection.length - position - 1;
-            for(var i = 0; i< count; i++){
-                var str = this.collection.models[position].get("text");
-                _.invoke(this.collection.find(str),'destroy');
-                this.collection.create({text:str});
-            };
-
-            this.collection.reOrder();
-            */
 
             this.collection.remove(model);
             var previousIndex = model.get("order");
@@ -212,6 +185,7 @@ $(function() {
             this.collection.models[position].save({"order": position});
             this.render();
         },
+
         search: function(e){
             if (e.keyCode != 13) return;
             if (!this.searchInput.val()) return;
